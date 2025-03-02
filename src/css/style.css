@@ -237,6 +237,27 @@ button {
 }
 /* End product list card */
 
+/* alert styles */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  background-color: var(--primary-color);
+  border: 1px solid darkorange;
+}
+.alert > p {
+  margin: 0;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-weight: bold;
+}
+.close-btn:hover {
+  color: red;
+}
+
 .product-detail {
   padding: 1em;
   max-width: 500px;

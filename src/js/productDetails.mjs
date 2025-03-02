@@ -1,5 +1,5 @@
 import { findProductById } from "./externalServices.mjs";
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 let product = {};
 
@@ -9,21 +9,14 @@ export default async function productDetails(productId) {
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
 
-// function addToCart() {
-//   const currentCart = JSON.parse(localStorage.getItem("so-cart")) || [];
-//   currentCart.push(product);
-//   setLocalStorage("so-cart", currentCart);
-// }
-
 function addToCart() {
   let cartContents = getLocalStorage("so-cart");
-  //check to see if there was anything there
   if (!cartContents) {
     cartContents = [];
   }
-  // then add the current product to the list
   cartContents.push(product);
   setLocalStorage("so-cart", cartContents);
+  alertMessage(`${product.NameWithoutBrand} added to cart!`);
 }
 
 function renderProductDetails() {
@@ -39,14 +32,3 @@ function renderProductDetails() {
     product.DescriptionHtmlSimple;
   document.querySelector("#addToCart").dataset.id = product.Id;
 }
-
-// add to cart button event handler
-// async function addToCartHandler(e) {
-//   const product = await findProductById(e.target.dataset.id);
-//   addProductToCart(product);
-// }
-
-// add listener to Add to Cart button
-// document
-//   .getElementById("addToCart")
-//   .addEventListener("click", addToCartHandler);
