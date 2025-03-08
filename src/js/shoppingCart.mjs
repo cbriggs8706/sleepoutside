@@ -29,7 +29,7 @@ function cartItemTemplate(item) {
     <a href="/product_pages/index.html?product=${
       item.Id
     }" class="cart-card__image">
-      <img src="${item.Image}" alt="Image of ${item.Name}" />
+      <img src="${item.Images.PrimarySmall}" alt="Image of ${item.Name}" />
     </a>
     <a href="/product_pages/index.html?product=${item.Id}">
       <h2 class="card__name">${item.Name}</h2>
