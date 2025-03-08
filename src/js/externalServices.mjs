@@ -52,6 +52,19 @@ export async function getOrders(token) {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await fetch(baseURL + "orders", options).then(convertToJson);
-  return response;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+  try {
+    const response = await fetch(baseURL + "orders", {
+      ...options,
+      signal: controller.signal,
+    }).then(convertToJson);
+    clearTimeout(timeoutId);
+    return response;
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    return [];
+  }
 }

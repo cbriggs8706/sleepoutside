@@ -3,16 +3,33 @@ import { loadHeaderFooter } from "../js/utils.mjs";
 import { getOrders } from "./externalServices.mjs";
 
 loadHeaderFooter();
-const token = checkLogin();
-currentOrders("#orders", token);
+document.addEventListener("DOMContentLoaded", async () => {
+  const token = checkLogin();
+  console.log("Token retrieved:", token);
+  if (token) {
+    await currentOrders("#orders", token);
+  }
+});
 
 export default async function currentOrders(selector, token) {
   try {
+    console.log("Fetching orders...");
     const orders = await getOrders(token);
+    console.log("Orders received:", orders);
+
     const parent = document.querySelector(`${selector} tbody`);
-    parent.innerHTML = orders.map(orderTemplate).join("");
+    if (!parent) {
+      console.error(`Element ${selector} tbody not found`);
+      return;
+    }
+    console.log("Rendering orders...");
+    //TODO remove limit?
+    const maxOrders = 50;
+    parent.innerHTML = orders.slice(0, maxOrders).map(orderTemplate).join("");
+    // parent.innerHTML = orders.map(orderTemplate).join("");
+    console.log("Rendering completed");
   } catch (err) {
-    console.log(err);
+    console.error("Error fetching orders:", err);
   }
 }
 

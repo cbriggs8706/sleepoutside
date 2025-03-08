@@ -7,9 +7,13 @@ const tokenKey = "so-token";
 export async function login(creds, redirect = "/") {
   try {
     const token = await loginRequest(creds);
+    console.log("Received token", token);
+
     setLocalStorage(tokenKey, token);
-    window.location = redirect;
-    // console.log("token", token);
+    console.log("Stored token", getLocalStorage(tokenKey));
+
+    window.location.replace(redirect);
+    // window.location = redirect;
   } catch (err) {
     alertMessage(err.message.message);
   }
@@ -17,7 +21,10 @@ export async function login(creds, redirect = "/") {
 
 export function checkLogin() {
   const token = getLocalStorage(tokenKey);
+  console.log("Stored token", getLocalStorage(tokenKey));
+
   const valid = isTokenValid(token);
+  console.log("Valid token", valid);
 
   if (!valid) {
     localStorage.removeItem(tokenKey);
