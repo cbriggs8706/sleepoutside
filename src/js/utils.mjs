@@ -64,13 +64,20 @@ function loadTemplate(path) {
   };
 }
 
-export async function loadHeaderFooter() {
+export async function loadHeaderFooter(afterRenderCallback = null) {
   const headerTemplateFn = loadTemplate("/partials/header.html");
   const footerTemplateFn = loadTemplate("/partials/footer.html");
   const headerEl = document.querySelector("#main-header");
   const footerEl = document.querySelector("#main-footer");
-  renderWithTemplate(headerTemplateFn, headerEl);
-  renderWithTemplate(footerTemplateFn, footerEl);
+
+  await renderWithTemplate(headerTemplateFn, headerEl);
+  await renderWithTemplate(footerTemplateFn, footerEl);
+
+  updateCartBadge();
+
+  if (afterRenderCallback) {
+    afterRenderCallback();
+  }
 }
 
 export function alertMessage(message, scroll = true, duration = 3000) {
@@ -95,4 +102,20 @@ export function alertMessage(message, scroll = true, duration = 3000) {
 export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+}
+
+export function updateCartBadge() {
+  const cart = getLocalStorage("so-cart") || [];
+  const totalItems = cart.reduce((sum, item) => sum + (item.Quantity || 1), 0);
+
+  const badge = document.querySelector("#cart-count");
+  if (badge) {
+    badge.textContent = totalItems;
+    badge.style.display = totalItems > 0 ? "inline-block" : "none";
+
+    // 👇 Trigger pop animation
+    badge.classList.remove("animate"); // reset animation
+    void badge.offsetWidth; // force reflow
+    badge.classList.add("animate");
+  }
 }
