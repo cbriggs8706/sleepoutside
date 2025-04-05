@@ -113,9 +113,8 @@ export function updateCartBadge() {
     badge.textContent = totalItems;
     badge.style.display = totalItems > 0 ? "inline-block" : "none";
 
-    // 👇 Trigger pop animation
-    badge.classList.remove("animate"); // reset animation
-    void badge.offsetWidth; // force reflow
+    badge.classList.remove("animate");
+    void badge.offsetWidth;
     badge.classList.add("animate");
   }
 }

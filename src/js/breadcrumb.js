@@ -4,18 +4,7 @@ export default function showBreadcrumb({
   count = 0,
   productName = "",
 }) {
-  console.log("✅ showBreadcrumb called:", {
-    type,
-    category,
-    count,
-    productName,
-  });
-
   const el = document.querySelector("#breadcrumb");
-  if (!el) {
-    console.warn("🚫 Breadcrumb element not found in DOM");
-    return;
-  }
 
   if (type === "home") {
     el.classList.add("hidden");

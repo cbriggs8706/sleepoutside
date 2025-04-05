@@ -14,14 +14,12 @@ export default async function productList(selector, category, searchTerm = "") {
   const container = document.querySelector(selector);
   let products = [];
 
-  // 1. Fetch appropriate data
   if (searchTerm) {
-    products = await getAllProducts(); // search = search across all
+    products = await getAllProducts();
   } else if (category) {
     products = await getProductsByCategory(category);
   }
 
-  // 2. Filter search results if applicable
   let filteredProducts = [...products];
 
   if (searchTerm) {
@@ -31,13 +29,10 @@ export default async function productList(selector, category, searchTerm = "") {
     );
   }
 
-  // 3. Save original list for sorting
   originalProducts = [...filteredProducts];
 
-  // 4. Render
   renderListWithTemplate(productCardTemplate, container, filteredProducts);
 
-  // 5. Update page heading
   document.querySelector(".title").textContent =
     searchTerm && filteredProducts.length === 0
       ? `No results for "${searchTerm}"`
@@ -45,7 +40,6 @@ export default async function productList(selector, category, searchTerm = "") {
       ? `Results for "${searchTerm}"`
       : category || "All Products";
 
-  // 6. Enable sorting
   setupSorting(container);
   return filteredProducts;
 }
@@ -111,7 +105,7 @@ document.addEventListener("click", async (e) => {
     const productId = e.target.dataset.id;
 
     try {
-      const product = await findProductById(productId); // <-- Full product object
+      const product = await findProductById(productId);
 
       if (!product || !product.Id) throw new Error("Product not found");
 

@@ -28,7 +28,6 @@ function setupRegisterModal() {
     modal.classList.add("hidden");
   });
 
-  // Optional: hide when clicking outside modal
   modal?.addEventListener("click", (e) => {
     if (e.target.id === "registerModal") {
       modal.classList.add("hidden");
@@ -45,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const email = document.getElementById("newsletter-email").value;
 
-      // Simulate success (replace with actual API call if desired)
       messageEl.textContent = `Thanks for subscribing, ${email}!`;
       messageEl.classList.add("success");
 

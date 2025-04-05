@@ -75,5 +75,5 @@ export async function getAllProducts() {
   const all = await Promise.all(
     allCategories.map((cat) => getProductsByCategory(cat))
   );
-  return all.flat(); // Flatten to a single list
+  return all.flat();
 }

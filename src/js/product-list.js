@@ -4,19 +4,15 @@ import showAlerts from "./alert.mjs";
 import { findProductById } from "./externalServices.mjs";
 import showBreadcrumb from "./breadcrumb.js";
 
-// Load shared layout
 loadHeaderFooter();
 showAlerts();
 
-// Get URL parameters
 const category = getParam("category");
 const searchTerm = getParam("search");
 
-// Render product list
 productList(".product-list", category, searchTerm).then((products) => {
   setupQuickView();
 
-  // Show breadcrumb
   showBreadcrumb({
     type: "list",
     category: category || searchTerm || "All",
@@ -31,7 +27,6 @@ function setupQuickView() {
 
   if (!productListElement || !modal || !closeBtn) return;
 
-  // Handle quick view button click
   productListElement.addEventListener("click", async (e) => {
     const button = e.target.closest(".quick-view-btn");
     if (!button) return;
@@ -47,12 +42,10 @@ function setupQuickView() {
     }
   });
 
-  // Close modal on X click
   closeBtn.addEventListener("click", () => {
     modal.classList.add("hidden");
   });
 
-  // Close modal on background click
   modal.addEventListener("click", (e) => {
     if (e.target.id === "quickViewModal") {
       modal.classList.add("hidden");

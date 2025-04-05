@@ -100,7 +100,6 @@ function renderProductDetails() {
     .getElementById("addToWishlist")
     .addEventListener("click", addToWishlist);
 
-  // Swatches
   const colorContainer = document.getElementById("productColors");
   if (product.Colors?.length > 1) {
     colorContainer.innerHTML = product.Colors.map(
@@ -131,10 +130,8 @@ function renderProductDetails() {
     const selectedColor = product.Colors[selectedIndex];
     product.SelectedColor = selectedColor;
 
-    // Attempt to match color code to image set by checking if the PrimaryExtraLarge ends with the color code
     const colorCode = selectedColor.ColorCode;
 
-    // Check if Images.PrimaryExtraLarge contains the colorCode
     const { Images } = product;
     const imageMatchesCode =
       Images.PrimaryExtraLarge?.includes(`_${colorCode}~`) ||
@@ -153,7 +150,6 @@ function renderProductDetails() {
       `;
       img.sizes = "(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw";
     } else {
-      // Fallback to selectedColor preview
       img.src = selectedColor.ColorPreviewImageSrc;
       img.alt = `${product.NameWithoutBrand} in ${selectedColor.ColorName}`;
       img.removeAttribute("srcset");
@@ -166,7 +162,6 @@ function renderProductDetails() {
     console.log("Swatch clicked:", selectedColor);
   });
 
-  // Thumbnails
   if (product.Images?.ExtraImages?.length > 0) {
     const thumbContainer = document.createElement("div");
     thumbContainer.classList.add("thumbnail-row");

@@ -13,7 +13,6 @@ export async function login(creds, redirect = "/") {
     console.log("Stored token", getLocalStorage(tokenKey));
 
     window.location.replace(redirect);
-    // window.location = redirect;
   } catch (err) {
     alertMessage(err.message.message);
   }

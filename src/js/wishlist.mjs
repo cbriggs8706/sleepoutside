@@ -5,7 +5,6 @@ import {
   updateCartBadge,
 } from "./utils.mjs";
 
-// Template for rendering wishlist items
 const wishlistItemTemplate = (item) => `
   <li class="cart-card divider" data-id="${item.Id}">
     <span class="remove-item" data-id="${item.Id}" title="Remove item">✖</span>
@@ -31,7 +30,6 @@ export default function wishlist() {
 
   renderListWithTemplate(wishlistItemTemplate, container, wishlistItems);
 
-  // Add event listeners for remove and move to cart actions
   addEventListeners(wishlistItems);
 }
 
@@ -53,7 +51,7 @@ function removeFromWishlist(id) {
   let wishlist = getLocalStorage("so-wishlist") || [];
   wishlist = wishlist.filter((item) => item.Id !== id);
   setLocalStorage("so-wishlist", wishlist);
-  wishlist(); // Re-render wishlist
+  wishlist();
 }
 
 function moveToCart(id, wishlistItems) {
@@ -64,11 +62,9 @@ function moveToCart(id, wishlistItems) {
   cart.push(itemToMove);
   setLocalStorage("so-cart", cart);
 
-  // Remove from wishlist
   wishlistItems = wishlistItems.filter((item) => item.Id !== id);
   setLocalStorage("so-wishlist", wishlistItems);
 
-  // Update the cart and wishlist UI
   wishlist();
   updateCartBadge();
 }

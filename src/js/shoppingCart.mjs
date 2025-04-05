@@ -14,7 +14,6 @@ export default function shoppingCart() {
   const total = calculateListTotal(cartItems);
   displayCartTotal(total);
 
-  // Remove item buttons
   document.querySelectorAll(".remove-item").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const idToRemove = e.target.dataset.id;
@@ -22,7 +21,6 @@ export default function shoppingCart() {
     });
   });
 
-  // Increment/decrement quantity
   document.querySelectorAll(".quantity-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const id = e.target.dataset.id;
