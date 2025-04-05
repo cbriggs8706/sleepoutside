@@ -8,14 +8,29 @@
     <script src="../js/product-list.js" type="module"></script>
   </head>
 
-  <body>
+  <body class="product-list-page">
     <header class="divider" id="main-header"></header>
+
     <main class="divider">
+      <div id="breadcrumb" class="breadcrumb hidden"></div>
       <section class="products">
         <h2>Top Products: <span class="title"></span></h2>
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select">
+          <option value="default">Default</option>
+          <option value="name">Name (A–Z)</option>
+          <option value="price">Price (Low–High)</option>
+        </select>
+
         <ul class="product-list"></ul>
       </section>
     </main>
     <footer id="main-footer"></footer>
+    <div id="quickViewModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="quickViewContent">Loading...</div>
+      </div>
+    </div>
   </body>
 </html>

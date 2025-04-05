@@ -15,17 +15,33 @@
 
   <body>
     <header class="divider" id="main-header"></header>
+    <div id="breadcrumb" class="breadcrumb hidden"></div>
 
     <main class="divider">
       <section class="product-detail">
         <h3 id="productName"></h3>
         <h2 class="divider" id="productNameWithoutBrand"></h2>
-        <img id="productImage" class="divider" src="" alt="" />
-        <p class="product-card__price" id="productFinalPrice"></p>
-        <p class="product__color" id="productColorName"></p>
+        <div class="product-image-container">
+          <span
+            id="discount-flag"
+            class="discount-flag"
+            style="display: none"
+          ></span>
+          <img
+            id="productImage"
+            class="divider"
+            src=""
+            alt=""
+            srcset=""
+            sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+        <p class="product-card__price" id="productPriceDisplay"></p>
+        <div id="productColors" class="product__colors"></div>
         <p class="product__description" id="productDescriptionHtmlSimple"></p>
         <div class="product-detail__add">
           <button id="addToCart" data-id="">Add to Cart</button>
+          <button id="addToWishlist" data-id="">Add to Wishlist</button>
         </div>
       </section>
     </main>

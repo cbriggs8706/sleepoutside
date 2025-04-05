@@ -71,7 +71,29 @@
           </li>
         </ul>
       </section>
+      <section class="newsletter-signup">
+        <h2>📬 Sign Up for Our Newsletter</h2>
+        <p>Be the first to hear about new gear, sales, and giveaways!</p>
+        <form id="newsletter-form">
+          <input
+            type="email"
+            id="newsletter-email"
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="newsletter-message" id="newsletter-message"></p>
+      </section>
     </main>
     <footer id="main-footer"></footer>
+    <div id="registerModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>🎉 Register & Win!</h2>
+        <p>Sign up now to be entered into our monthly gear giveaway!</p>
+        <a href="/register.html" class="button">Register Now</a>
+      </div>
+    </div>
   </body>
 </html>
